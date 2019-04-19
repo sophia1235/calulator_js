@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul {margin: 0; padding: 0; list-style: none;}
+    li {display: inline-block; width: 200px; height: 250px; margin-right: 10px; margin-bottom: 10px; padding: 0; border: 2px solid #333}
+</style>
+<body>
+    <h2>상품 목록</h2>
+    <div>
+        <ul id="goods-list">
+            
+        </ul>
+    </div>
+</body>
+<script>
+
+//변수 
+var 상품 = "하늘하늘 원피스";
+//console.log(상품);
+상품 = "하늘 하늘 봄에 어울리는 원피스";
+//console.log(상품);
+
+
+//상수
+const 고정상품 = "히트텍";
+// 고정상품 = "불나는 히트텍";
+
+// var 펜션  = {"code":200,"message":"SUCCESS","results":{"title":"댕댕이와 함께 하는 특별한 여행","sub_title":"이제는 같이 떠나 보세요~ 애견펜션은 여기 다 모였다!","pension_list":[{"ad_id":110,"idf_pension":2795,"name":"더마을펜션","address":"경기도 가평군","price":160000,"price_discount":160000,"tags":["커플","가족","애견"],"image":"https://pension-image.pensionrun.com/2795/201606241150126230.jpg"},{"ad_id":110,"idf_pension":5464,"name":"보보뚜애견펜션","address":"경상북도 경주시","price":240000,"price_discount":240000,"tags":["캠프파이어/모닥불","카라반","디자인/부띠끄","커플","가족","애견","산근처"],"image":"https://pension-image.pensionrun.com/5464/201609071523305660.jpg"},{"ad_id":110,"idf_pension":5500,"name":"빌라엠애견펜션","address":"강원도 춘천시","price":150000,"price_discount":150000,"tags":["리버뷰","커플","가족","애견","수상레포츠"],"image":"https://pension-image.pensionrun.com/5500/2016091315121626710.jpg"},{"ad_id":110,"idf_pension":6193,"name":"더마루펜션","address":"충청남도 태안군","price":120000,"price_discount":120000,"tags":["커플","가족","단체","워크샵","애견","바다근처"],"image":"https://pension-image.pensionrun.com/6193/2016122717332479070.jpeg"},{"ad_id":110,"idf_pension":6485,"name":"꿈꾸는다락방펜션","address":"충청남도 태안군","price":160000,"price_discount":160000,"tags":["갯벌체험","커플","가족","애견","바다근처"],"image":"https://pension-image.pensionrun.com/6485/2017012011341118620.jpeg"},{"ad_id":110,"idf_pension":9409,"name":"모나코애견펜션","address":"경기도 가평군","price":140000,"price_discount":140000,"tags":["계곡근처","스파/월풀","커플","풀빌라","고급/럭셔리","독채","가족","애견","산근처"],"image":"https://pension-image.pensionrun.com/9409/201812170719243NW.jpeg"}]}}
+
+//배열
+상품들 = ["하늘 하늘 원피스", "찢어진 청바지", "간지나는 자켓", "예쁜 모자", "컬러풀한 양말"];
+//console.log(상품들);
+
+//함수
+
+//반복문
+
+// for (let 상품인덱스 in 상품들) {
+//     let liElement = document.createElement("li");
+//     liElement.innerText = 상품들[상품인덱스];
+//     document.getElementById("goods-list").appendChild(liElement)   
+// }
+// var 상품인덱스 = 0;
+// var liElement = document.createElement("li");
+// liElement.innerText = 상품들[상품인덱스];
+// document.getElementById("goods-list").appendChild(liElement);
+
+// var 상품인덱스 = 1;
+// var liElement = document.createElement("li");
+// liElement.innerText = 상품들[상품인덱스];
+// document.getElementById("goods-list").appendChild(liElement);
+
+// var 상품인덱스 = 2;
+// var liElement = document.createElement("li");
+// liElement.innerText = 상품들[상품인덱스];
+// document.getElementById("goods-list").appendChild(liElement);
+
+
+// var 상품인덱스 = 3;
+// var liElement = document.createElement("li");
+// liElement.innerText = 상품들[상품인덱스];
+// document.getElementById("goods-list").appendChild(liElement);
+
+for (let 상품인덱스 in 상품들) {
+    if (상품인덱스 <= 2 ) {
+        var liElement = document.createElement("li");
+        liElement.innerText = 상품들[상품인덱스];
+        document.getElementById("goods-list").appendChild(liElement);
+    } else if (상품인덱스 == 3 ) {
+        var liElement = document.createElement("li");
+        liElement.innerText = 상품들[상품인덱스];
+        liElement.style.color = "blue";
+        document.getElementById("goods-list").appendChild(liElement);
+    } else {
+        var liElement = document.createElement("li");
+        liElement.innerText = 상품들[상품인덱스];
+        liElement.style.color = "red";
+        document.getElementById("goods-list").appendChild(liElement);
+    }
+}
+
+//조건문
+
+
+
+// console.log("이것은 콘솔로그");
+// document.getElementsByTagName("button")[0].addEventListener("click", function() {
+//     document.getElementsByTagName("div")[0].innerHTML = "hello staysuite";
+//     document.body.style.backgroundColor = "red";
+// })
+
+</script>
+</html>

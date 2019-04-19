@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+    .cal {
+        width: 500px;
+        padding: 16px;
+        background-color: #333;
+        color: #fff;
+    }
+    .result {
+        padding: 16px;
+        text-align: right;
+        font-size: 48px;
+    }
+    ul {
+    }
+    li {
+        display: inline-block;
+        padding: 22px 0;
+        width: 60px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        text-align: center;
+        background-color: grey;
+        border-radius: 50%;
+    }
+    li:last-child {
+        margin: 0;
+    }
+    .accent {
+        background-color: #ff6347;
+    }
+</style>
+<body>
+    <div class="cal">
+        <div class="result" id="result"></div>
+        <ul>
+            <li class="number_pad">7</li>
+            <li class="number_pad">8</li>
+            <li class="number_pad">9</li>
+            <li class="accent" id="operator">/</li>
+            <br />
+            <li class="number_pad">4</li>
+            <li class="number_pad">5</li>
+            <li class="number_pad">6</li>
+            <li class="accent" id="operator">X</li>
+            <br />
+            <li class="number_pad">1</li>
+            <li class="number_pad">2</li>
+            <li class="number_pad">3</li>
+            <li class="accent" id="operator">-</li>
+            <br />
+            <li class="number_pad">0</li>
+            <li class="accent" id="clear-button">AC</li>
+            <li class="accent" id="equal">=</li>
+            <li class="accent" id="operator">+</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+ <script>
+     // 숫자패드 클릭시 result 부분에 해당 숫자가 끝으로 들어간다.
+    // 숫자패드 클릭시 AC 는 C로 변경되고 C를 클릭하면 AC로 변경된다.
+    // AC : all clear (히스토리 전부 삭제)
+    // C : 현재 값만 삭제
+    // 숫자 패드 클릭시 result가 0이면 0은 없애준다.
+    // 0을 클릭시 result에 0이 있다면 추가 입력되지 않는다.
+    // 사칙 연산 클릭 후 숫자 클릭시 result 부분은 처음부터 다시 시작한다.
+    // 사칙 연산 클릭 앞에 사칙연산이 이미 눌러져있다면 이퀄을 포함한 기능을 수행한다.
+
+    //result 공간에 있는 값 뒤에 result변수의 값을 붙여서 넣는다.
+    function insertResult(result) {
+        if (isNaN(parseInt(result))) {
+            result = 0;
+        }
+
+        var oldResult = document.getElementById("result").innerText // 0 
+        document.getElementById("result").innerText = parseInt(oldResult + result); // "63" + "0" -> 630
+    }
+
+    function clearResult()
+    {
+        document.getElementById("result").innerText = "0";
+    }
+    
+    function buttonC()
+    {
+        if (document.getElementById("result").innerText == 0) {
+            document.getElementById("clear-button").innerText = "AC";
+        }  else {
+            document.getElementById("clear-button").innerText = "C";
+        }
+    }
+
+    insertResult(0);
+
+    for (var i = 0; i <= 9; i++) {
+        document.getElementsByClassName("number_pad")[i].addEventListener("click", function () {
+            insertResult(this.innerText);
+            buttonC();
+        });
+    }
+
+    document.getElementById("clear-button").addEventListener("click", function() {
+        clearResult();
+        buttonC();
+    })
+
+    
+    
+ </script>
