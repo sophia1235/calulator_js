@@ -45,22 +45,22 @@
             <li class="number_pad">7</li>
             <li class="number_pad">8</li>
             <li class="number_pad">9</li>
-            <li class="accent" id="operator">/</li>
+            <li class="accent operator">/</li>
             <br />
             <li class="number_pad">4</li>
             <li class="number_pad">5</li>
             <li class="number_pad">6</li>
-            <li class="accent" id="operator">X</li>
+            <li class="accent operator">X</li>
             <br />
             <li class="number_pad">1</li>
             <li class="number_pad">2</li>
             <li class="number_pad">3</li>
-            <li class="accent" id="operator">-</li>
+            <li class="accent operator">-</li>
             <br />
             <li class="number_pad">0</li>
             <li class="accent" id="clear-button">AC</li>
             <li class="accent" id="equal">=</li>
-            <li class="accent" id="operator">+</li>
+            <li class="accent operator">+</li>
         </ul>
     </div>
 </body>
@@ -78,12 +78,20 @@
 
     //result 공간에 있는 값 뒤에 result변수의 값을 붙여서 넣는다.
      
+
+    //첫번째 값을 등록 -> 사칙 연산 클릭 -> 두번째 값을 등록하고 -> = || 사칙연산을 클릭 -> 두번째 값을 등록 -> 
+    //                                                  (첫번째 값과 두번째 값을 계산한 결과값이 첫번째 값으로 변경 / 두번째 값은 0)
+
+    var firstValue = null;
+    // var secondValue = null;
+    var operator = null;
+    var clickBefore = null;
+
      //기능 
     function insertResult(result) {
         if (isNaN(parseInt(result))) {
             result = 0;
         }
-
 
         var oldResult = document.getElementById("result").innerText // 0 
         document.getElementById("result").innerText = parseInt(oldResult + result); // "63" + "0" -> 630
@@ -107,8 +115,16 @@
 
     for (var i = 0; i <= 9; i++) {
         document.getElementsByClassName("number_pad")[i].addEventListener("click", function () {
+            if (clickBefore == 2 || clickBefore == 3 ) {
+                clearResult();
+                if (clickBefore == 3) {
+                    firstValue = null;
+                }
+            }
+        
             insertResult(this.innerText);
             buttonC();
+            clickBefore = 1;
         });
     }
 
@@ -117,6 +133,56 @@
         buttonC();
     })
 
+    for (var i =0; i <= 3; i++) {
+        document.getElementsByClassName("operator")[i].addEventListener("click", function() {
+                
+            if (clickBefore == 1) {
+
+                if (firstValue) {
+
+                    if (operator == '+') {
+                        firstValue = firstValue + parseInt(document.getElementById('result').innerText);;                
+                    } else if (operator == '-') {
+                        firstValue = firstValue - parseInt(document.getElementById('result').innerText);;                
+                    } else if (operator == '/') {
+                        firstValue = firstValue / parseInt(document.getElementById('result').innerText);;                
+                    } else if (operator == 'X') {
+                        firstValue = firstValue * parseInt(document.getElementById('result').innerText);;                
+                    }   
+                    clearResult();
+                    insertResult(firstValue);
+                } else {
+                    firstValue = parseInt(document.getElementById('result').innerText);
+                }
+            }
+
+            operator = this.innerText;
+            clickBefore = 2;
+        });
+    }
+
+
+    document.getElementById('equal').addEventListener("click", function() {
+        if (firstValue) {
+
+            if (operator == '+') {
+                firstValue = firstValue + parseInt(document.getElementById('result').innerText);;                
+            } else if (operator == '-') {
+                firstValue = firstValue - parseInt(document.getElementById('result').innerText);;                
+            } else if (operator == '/') {
+                firstValue = firstValue / parseInt(document.getElementById('result').innerText);;                
+            } else if (operator == 'X') {
+                firstValue = firstValue * parseInt(document.getElementById('result').innerText);;                
+            }   
+            clearResult();
+            insertResult(firstValue);
+        } else {
+            firstValue = parseInt(document.getElementById('result').innerText);
+        }
+
+        operator = null; 
+        clickBefore = 3;
+    })
     
     
  </script>
